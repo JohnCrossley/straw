@@ -1,0 +1,7 @@
+<resources>
+    <!--
+        Put this into your ImageView tag as the key, with the resource id as the value.
+        I.e. imageView.setTag(RESOURCE_ID_TAG_KEY, R.drawable.my_image);
+    -->
+    <item type="id" name="image_view_tag_resource_id" />
+</resources>

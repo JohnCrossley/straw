@@ -30,7 +30,6 @@ public class Cache {
         return uiPersister;
     }
 
-
     public void newInstanceCreated() {
         instanceCount++;
     }
