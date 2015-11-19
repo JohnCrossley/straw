@@ -5,4 +5,5 @@
 /AndroidFramework.iml
 /build/*
 /.idea/*
+/.gradle/*
 
