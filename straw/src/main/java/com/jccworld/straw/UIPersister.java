@@ -1,9 +1,9 @@
 package com.jccworld.straw;
 
+import android.app.Activity;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -19,12 +19,16 @@ import com.jccworld.straw.ui.persisters.CheckBoxPersister;
 import com.jccworld.straw.ui.persisters.EditTextPersister;
 import com.jccworld.straw.ui.persisters.ImageButtonPersister;
 import com.jccworld.straw.ui.persisters.ImageViewPersister;
+import com.jccworld.straw.ui.persisters.Persisted;
 import com.jccworld.straw.ui.persisters.RadioGroupPersister;
 import com.jccworld.straw.ui.persisters.SpinnerPersister;
 import com.jccworld.straw.ui.persisters.SwitchPersister;
 import com.jccworld.straw.ui.persisters.TextViewPersister;
 import com.jccworld.straw.ui.persisters.ToggleButtonPersister;
+import com.jccworld.straw.ui.vo.Persister;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,129 +39,81 @@ import java.util.Map;
  * Created by jcc on 26/10/15.
  */
 public class UIPersister {
-    private Map<String, Object> map = new HashMap<>();
+    private static final String DEHYDRATE_METHOD = "dehydrate";
+    private static final String HYDRATE_METHOD = "hydrate";
 
-    private final AutoCompleteTextViewPersister autoCompleteTextViewPersister;
-    private final ButtonPersister buttonPersister;
-    private final CheckBoxPersister checkBoxPersister;
-    private final EditTextPersister editTextPersister;
-    private final ImageButtonPersister imageButtonPersister;
-    private final ImageViewPersister imageViewPersister;
-    private final RadioGroupPersister radioGroupPersister;
-    private final SpinnerPersister spinnerPersister;
-    private final SwitchPersister switchPersister;
-    private final TextViewPersister textViewPersister;
-    private final ToggleButtonPersister toggleButtonPersister;
+    private final Map<String, Object> map = new HashMap<>();
+    private final Map<Class, Persister> matchers = new HashMap<>();
 
     public UIPersister() {
-        autoCompleteTextViewPersister = new AutoCompleteTextViewPersister();
-        buttonPersister = new ButtonPersister();
-        checkBoxPersister = new CheckBoxPersister();
-        editTextPersister = new EditTextPersister();
-        imageButtonPersister = new ImageButtonPersister();
-        imageViewPersister = new ImageViewPersister();
-        radioGroupPersister = new RadioGroupPersister();
-        spinnerPersister = new SpinnerPersister();
-        switchPersister = new SwitchPersister();
-        textViewPersister = new TextViewPersister();
-        toggleButtonPersister = new ToggleButtonPersister();
+        matchers.put(AutoCompleteTextView.class, new AutoCompleteTextViewPersister());
+        matchers.put(Button.class, new ButtonPersister());
+        matchers.put(CheckBox.class, new CheckBoxPersister());
+        matchers.put(EditText.class, new EditTextPersister());
+        matchers.put(ImageButton.class, new ImageButtonPersister());
+        matchers.put(ImageView.class, new ImageViewPersister());
+        matchers.put(RadioGroup.class, new RadioGroupPersister());
+        matchers.put(Spinner.class, new SpinnerPersister());
+        matchers.put(Switch.class, new SwitchPersister());
+        matchers.put(TextView.class, new TextViewPersister());
+        matchers.put(ToggleButton.class, new ToggleButtonPersister());
     }
 
-    public void save(final String key, final AutoCompleteTextView autoCompleteTextView) {
-        map.put(key, autoCompleteTextViewPersister.dehydrate(autoCompleteTextView));
+    public void save(final Activity activity) throws IllegalArgumentException {
+        Field[] fields = activity.getClass().getDeclaredFields();
+
+        for(Field field : fields) {
+            Persisted annotation = field.getAnnotation(Persisted.class);
+
+            if (annotation != null) {
+                Class<?> type = field.getType();
+                if (!matchers.containsKey(type)) {
+                    throw new IllegalArgumentException("Cannot persist objects of type: " + type + ".  Please remove the @Persisted annotation.");
+                }
+
+                Persister persister = matchers.get(type);
+
+                try {
+                    field.setAccessible(true);
+                    Object viewToSerialise = field.get(activity);
+
+                    Method method = persister.getClass().getMethod(DEHYDRATE_METHOD, type);
+                    Object serialisedObject = method.invoke(persister, viewToSerialise);
+
+                    map.put(field.getName(), serialisedObject);
+
+                } catch (Exception e) {
+                    throw new RuntimeException("Cannot save object: " + e.getMessage(), e);
+                }
+            }
+        }
     }
 
-    public void load(final String key, final AutoCompleteTextView autoCompleteTextView) {
-        autoCompleteTextViewPersister.hydrate(autoCompleteTextView, map.get(key));
-    }
+    public void load(final Activity activity) throws IllegalArgumentException {
+        Field[] fields = activity.getClass().getDeclaredFields();
 
+        for(Field field : fields) {
+            Persisted annotation = field.getAnnotation(Persisted.class);
 
-    public void save(final String key, final Button button) {
-        map.put(key, buttonPersister.dehydrate(button));
-    }
+            if (annotation != null) {
+                Class<?> type = field.getType();
+                if (!matchers.containsKey(type)) {
+                    throw new IllegalArgumentException("Cannot persist objects of type: " + type + ".  Please remove the @Persisted annotation.");
+                }
 
-    public void load(final String key, final Button button) {
-        buttonPersister.hydrate(button, map.get(key));
-    }
+                Persister persister = matchers.get(type);
 
+                try {
+                    field.setAccessible(true);
+                    Object viewToPopulate = field.get(activity);
 
-    public void save(final String key, final CheckBox checkBox) {
-        map.put(key, checkBoxPersister.dehydrate(checkBox));
-    }
+                    Method method = persister.getClass().getMethod(HYDRATE_METHOD, type, Object.class);
+                    method.invoke(persister, viewToPopulate, map.get(field.getName()));
 
-    public void load(final String key, final CheckBox checkBox) {
-        checkBoxPersister.hydrate(checkBox, map.get(key));
-    }
-
-
-    public void save(final String key, final EditText editText) {
-        map.put(key, editTextPersister.dehydrate(editText));
-    }
-
-    public void load(final String key, final EditText editText) {
-        editTextPersister.hydrate(editText, map.get(key));
-    }
-
-
-    public void save(final String key, final ImageButton imageButton) {
-        map.put(key, imageButtonPersister.dehydrate(imageButton));
-    }
-
-    public void load(final String key, final ImageButton imageButton) {
-        imageButtonPersister.hydrate(imageButton, map.get(key));
-    }
-
-
-    public void save(final String key, final ImageView imageView) {
-        map.put(key, imageViewPersister.dehydrate(imageView));
-    }
-
-    public void load(final String key, final ImageView imageView) {
-        imageViewPersister.hydrate(imageView, map.get(key));
-    }
-
-
-    public void save(final String key, final RadioGroup radioGroup) {
-        map.put(key, radioGroupPersister.dehydrate(radioGroup));
-    }
-
-    public void load(final String key, final RadioGroup radioGroup) {
-        radioGroupPersister.hydrate(radioGroup, map.get(key));
-    }
-
-
-    public void save(final String key, final Spinner spinner) {
-        map.put(key, spinnerPersister.dehydrate(spinner));
-    }
-
-    public void load(final String key, final Spinner spinner) {
-        spinnerPersister.hydrate(spinner, map.get(key));
-    }
-
-
-    public void save(final String key, final Switch switchButton) {
-        map.put(key, switchPersister.dehydrate(switchButton));
-    }
-
-    public void load(final String key, final Switch switchButton) {
-        switchPersister.hydrate(switchButton, map.get(key));
-    }
-
-
-    public void save(final String key, final TextView textView) {
-        map.put(key, textViewPersister.dehydrate(textView));
-    }
-
-    public void load(final String key, final TextView textView) {
-        textViewPersister.hydrate(textView, map.get(key));
-    }
-
-
-    public void save(final String key, final ToggleButton toggleButton) {
-        map.put(key, toggleButtonPersister.dehydrate(toggleButton));
-    }
-
-    public void load(final String key, final ToggleButton toggleButton) {
-        toggleButtonPersister.hydrate(toggleButton, map.get(key));
+                } catch (Exception e) {
+                    throw new RuntimeException("Cannot load object: " + e.getMessage(), e);
+                }
+            }
+        }
     }
 }

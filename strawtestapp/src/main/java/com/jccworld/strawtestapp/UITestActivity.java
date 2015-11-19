@@ -18,6 +18,7 @@ import android.widget.ToggleButton;
 
 import com.jccworld.straw.KeyValueCache;
 import com.jccworld.straw.UIPersister;
+import com.jccworld.straw.ui.persisters.Persisted;
 import com.jccworld.strawtestapp.debug.VerboseActivity;
 
 import java.util.Random;
@@ -31,45 +32,32 @@ public class UITestActivity extends VerboseActivity implements View.OnClickListe
     private static final int INITIAL_IMAGE_RES_ID = R.drawable.tick;
     private static final int RUNTIME_CHANGE_IMAGE_RES_ID = R.drawable.tick_after;
 
-    private static final String KEY_TEXT_VIEW = "textView";
-    private static final String KEY_IMAGE_VIEW = "imageView";
-    private static final String KEY_EDIT_TEXT = "editText";
-    private static final String KEY_BUTTON = "button";
-    private static final String KEY_RADIO_GROUP = "radioGroup";
-    private static final String KEY_SPINNER = "spinner";
-    private static final String KEY_IMAGE_BUTTON = "imageButton";
-    private static final String KEY_AUTO_COMPLETE_TEXT_VIEW = "autoCompleteTextView";
-    private static final String KEY_CHECK_BOX_1 = "checkBox1";
-    private static final String KEY_CHECK_BOX_2 = "checkBox2";
-    private static final String KEY_CHECK_BOX_3 = "checkBox3";
-    private static final String KEY_TOGGLE_BUTTON = "toggleButton";
-    private static final String KEY_SWITCH = "switch";
     private static final String KEY_VIEWS_ENABLED = "viewsEnabled";
     public static final String DISABLE_VIEWS = "Disable views";
     public static final String ENABLE_VIEWS = "Enable views";
 
     private boolean viewsEnabled;
 
-    private TextView textView;
-    private ImageView imageView;
-    private EditText editText;
-    private Button button;
+    @Persisted private TextView textView;
+    @Persisted private ImageView imageView;
+    @Persisted private EditText editText;
+    @Persisted private Button button;
 
-    private RadioGroup radioGroup;
+    @Persisted private RadioGroup radioGroup;
     private RadioButton radioButton1;
     private RadioButton radioButton2;
     private RadioButton radioButton3;
 
-    private Spinner spinner;
-    private ImageButton imageButton;
-    private AutoCompleteTextView autoCompleteTextView;
+    @Persisted private Spinner spinner;
+    @Persisted private ImageButton imageButton;
+    @Persisted private AutoCompleteTextView autoCompleteTextView;
 
-    private CheckBox checkBox1;
-    private CheckBox checkBox2;
-    private CheckBox checkBox3;
+    @Persisted private CheckBox checkBox1;
+    @Persisted private CheckBox checkBox2;
+    @Persisted private CheckBox checkBox3;
 
-    private ToggleButton toggleButton;
-    private Switch switchButton;
+    @Persisted private ToggleButton toggleButton;
+    @Persisted private Switch switchButton;
 
     //experimentation buttons
     private Button modifyContentBtn;
@@ -110,19 +98,7 @@ public class UITestActivity extends VerboseActivity implements View.OnClickListe
 
         keyValueCache.save(KEY_VIEWS_ENABLED, viewsEnabled);
 
-        uiPersister.save(KEY_TEXT_VIEW, textView);
-        uiPersister.save(KEY_IMAGE_VIEW, imageView);
-        uiPersister.save(KEY_EDIT_TEXT, editText);
-        uiPersister.save(KEY_BUTTON, button);
-        uiPersister.save(KEY_RADIO_GROUP, radioGroup);
-        uiPersister.save(KEY_SPINNER, spinner);
-        uiPersister.save(KEY_IMAGE_BUTTON, imageButton);
-        uiPersister.save(KEY_AUTO_COMPLETE_TEXT_VIEW, autoCompleteTextView);
-        uiPersister.save(KEY_CHECK_BOX_1, checkBox1);
-        uiPersister.save(KEY_CHECK_BOX_2, checkBox2);
-        uiPersister.save(KEY_CHECK_BOX_3, checkBox3);
-        uiPersister.save(KEY_TOGGLE_BUTTON, toggleButton);
-        uiPersister.save(KEY_SWITCH, switchButton);
+        uiPersister.save(this);
     }
 
     @Override
@@ -138,19 +114,7 @@ public class UITestActivity extends VerboseActivity implements View.OnClickListe
         viewsEnabled = keyValueCache.loadBoolean(KEY_VIEWS_ENABLED);
         updateEnableDisableLabel();
 
-        uiPersister.load(KEY_TEXT_VIEW, textView);
-        uiPersister.load(KEY_IMAGE_VIEW, imageView);
-        uiPersister.load(KEY_EDIT_TEXT, editText);
-        uiPersister.load(KEY_BUTTON, button);
-        uiPersister.load(KEY_RADIO_GROUP, radioGroup);
-        uiPersister.load(KEY_SPINNER, spinner);
-        uiPersister.load(KEY_IMAGE_BUTTON, imageButton);
-        uiPersister.load(KEY_AUTO_COMPLETE_TEXT_VIEW, autoCompleteTextView);
-        uiPersister.load(KEY_CHECK_BOX_1, checkBox1);
-        uiPersister.load(KEY_CHECK_BOX_2, checkBox2);
-        uiPersister.load(KEY_CHECK_BOX_3, checkBox3);
-        uiPersister.load(KEY_TOGGLE_BUTTON, toggleButton);
-        uiPersister.load(KEY_SWITCH, switchButton);
+        uiPersister.load(this);
     }
 
     @Override
