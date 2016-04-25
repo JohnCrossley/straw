@@ -3,7 +3,7 @@ package com.jccworld.straw.ui.persisters;
 /**
  * Created by jcc on 19/11/15.
  */
-public class SwitchBean {
+public class SwitchBean implements PersistedDataBean {
     final String textOn;
     final String textOff;
     final boolean showText;

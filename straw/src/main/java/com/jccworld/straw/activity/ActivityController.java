@@ -25,15 +25,15 @@ public class ActivityController {
         }
     }
 
-    public static void startActivity(final Context context, final Class clazz, final Map<String, Object> initParams) {
-        doIt(context, clazz, initParams);
+    public static String startActivity(final Context context, final Class clazz, final Map<String, Object> initParams) {
+        return doIt(context, clazz, initParams);
     }
 
-    public static void startActivity(final Context context, final Class clazz) {
-        doIt(context, clazz, new HashMap<String, Object>());
+    public static String startActivity(final Context context, final Class clazz) {
+        return doIt(context, clazz, new HashMap<String, Object>());
     }
 
-    private static void doIt(final Context context, final Class clazz, final Map<String, Object> initParams) {
+    private static String doIt(final Context context, final Class clazz, final Map<String, Object> initParams) {
         checkApplicationContext(context.getApplicationContext());
 
         UUID uuid = UUID.randomUUID();
@@ -45,5 +45,7 @@ public class ActivityController {
         activityCache.create(activityId, initParams);
 
         context.startActivity(intent);
+
+        return activityId;
     }
 }

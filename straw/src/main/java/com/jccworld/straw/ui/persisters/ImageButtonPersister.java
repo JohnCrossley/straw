@@ -10,14 +10,14 @@ import com.jccworld.straw.ui.vo.Persister;
  */
 public class ImageButtonPersister implements Persister<ImageButton> {
     @Override
-    public Object dehydrate(final ImageButton imageButton) {
+    public ImageButtonBean dehydrate(final ImageButton imageButton) {
         int resourceId = (Integer) imageButton.getTag(R.id.image_view_tag_resource_id);
         ImageButtonBean bean = new ImageButtonBean(resourceId, imageButton.isEnabled());
         return bean;
     }
 
     @Override
-    public void hydrate(final ImageButton imageButton, final Object payload) {
+    public void hydrate(final ImageButton imageButton, final PersistedDataBean payload) {
         ImageButtonBean bean = (ImageButtonBean) payload;
         imageButton.setImageResource(bean.resourceId);
         imageButton.setEnabled(bean.enabled);

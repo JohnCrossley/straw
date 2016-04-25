@@ -1,9 +1,8 @@
 package com.jccworld.straw.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 
 import com.jccworld.straw.Cache;
@@ -12,7 +11,7 @@ import com.jccworld.straw.application.ApplicationCallbacks;
 /**
  * Created by jcc on 26/10/15.
  */
-public abstract class BaseActivity extends ActionBarActivity implements ActivityCallbacks {
+public abstract class BaseActivity extends Activity implements ActivityCallbacks {
 
     public BaseActivity() {
         super();
@@ -22,10 +21,6 @@ public abstract class BaseActivity extends ActionBarActivity implements Activity
         Log.v(getClass().getSimpleName(), "[straw] " + message);
     }
 
-    public String getActivityId() {
-        return getIntent().getStringExtra(ActivityController.ACTIVITY_ID);
-    }
-
     private Cache retrieveCache() {
         ActivityController.checkApplicationContext(getApplicationContext());
         final Context applicationContext = getApplicationContext();
@@ -33,6 +28,9 @@ public abstract class BaseActivity extends ActionBarActivity implements Activity
         return activityCache.get(getActivityId());
     }
 
+    protected String getActivityId() {
+        return getIntent().getStringExtra(ActivityController.ACTIVITY_ID);
+    }
 
     //----------------------------------------------------------------------------------------------
 
@@ -56,26 +54,10 @@ public abstract class BaseActivity extends ActionBarActivity implements Activity
 
     //----------------------------------------------------------------------------------------------
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         logV("onCreate(savedInstanceState: " + savedInstanceState + ")");
         super.onCreate(savedInstanceState);
-
-        handleOnCreated();
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        logV("onCreate(savedInstanceState: " + savedInstanceState + ", persistentState: " + persistentState + ")");
-
-        if (savedInstanceState != null) {
-            for(String s : savedInstanceState.keySet()) {
-                logV("   +++ savedInstanceState --> " + s + ": " + savedInstanceState.get(s));
-            }
-        }
-
-        super.onCreate(savedInstanceState, persistentState);
 
         handleOnCreated();
     }

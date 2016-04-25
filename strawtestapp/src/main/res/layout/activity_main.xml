@@ -13,10 +13,17 @@
     />
 
     <Button
-        android:id="@+id/eventBus"
+        android:id="@+id/eventBusPojo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Event bus"
+        android:text="Event bus Pojo"
     />
+
+    <Button
+        android:id="@+id/eventBusDomain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Event bus Domain"
+        />
 
 </LinearLayout>

@@ -9,7 +9,7 @@ import com.jccworld.straw.ui.vo.Persister;
  */
 public class SpinnerPersister implements Persister<Spinner> {
     @Override
-    public Object dehydrate(final Spinner spinner) {
+    public SpinnerBean dehydrate(final Spinner spinner) {
         int selectedIdx = -1;
 
         if (spinner.getSelectedItemId() != Spinner.INVALID_ROW_ID) { //inconsistent with other Views...
@@ -26,7 +26,7 @@ public class SpinnerPersister implements Persister<Spinner> {
     }
 
     @Override
-    public void hydrate(Spinner spinner, Object payload) {
+    public void hydrate(Spinner spinner, PersistedDataBean payload) {
         SpinnerBean bean = (SpinnerBean) payload;
 
         if (bean.selectedIdx >= 0) {

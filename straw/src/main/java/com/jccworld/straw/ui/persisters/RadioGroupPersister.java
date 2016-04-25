@@ -11,7 +11,7 @@ import com.jccworld.straw.ui.vo.Persister;
  */
 public class RadioGroupPersister implements Persister<RadioGroup> {
     @Override
-    public Object dehydrate(final RadioGroup radioGroup) {
+    public RadioGroupBean dehydrate(final RadioGroup radioGroup) {
         RadioButtonBean radioButtonBeans[] = new RadioButtonBean[radioGroup.getChildCount()];
         int selectedIdx = -1;
 
@@ -33,7 +33,7 @@ public class RadioGroupPersister implements Persister<RadioGroup> {
     }
 
     @Override
-    public void hydrate(final RadioGroup radioGroup, final Object payload) {
+    public void hydrate(final RadioGroup radioGroup, final PersistedDataBean payload) {
         final RadioGroupBean bean = (RadioGroupBean) payload;
 
         for(int i = 0; i < radioGroup.getChildCount(); i++) {

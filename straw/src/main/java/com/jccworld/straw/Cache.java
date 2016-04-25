@@ -41,4 +41,31 @@ public class Cache {
     public boolean isFirstRun() {
         return instanceCount == 1;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        final Cache cache = (Cache) o;
+
+        if (instanceCount != cache.instanceCount) {
+            return false;
+        }
+
+        return keyValueCache.equals(cache.keyValueCache);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = instanceCount;
+        result = 31 * result + keyValueCache.hashCode();
+        result = 31 * result + uiPersister.hashCode();
+        return result;
+    }
 }

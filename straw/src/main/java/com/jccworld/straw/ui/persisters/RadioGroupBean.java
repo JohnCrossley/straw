@@ -3,7 +3,7 @@ package com.jccworld.straw.ui.persisters;
 /**
  * Created by jcc on 19/11/15.
  */
-public class RadioGroupBean {
+public class RadioGroupBean implements PersistedDataBean {
     final RadioButtonBean[] radioButtonBeans;
     final int selectedIdx;
 

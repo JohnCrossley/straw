@@ -1,4 +1,4 @@
-package com.jccworld.strawtestapp;
+package com.jccworld.strawtestapp.activity;
 
 import android.os.Build;
 import android.view.View;
@@ -19,6 +19,7 @@ import android.widget.ToggleButton;
 import com.jccworld.straw.KeyValueCache;
 import com.jccworld.straw.UIPersister;
 import com.jccworld.straw.ui.persisters.Persisted;
+import com.jccworld.strawtestapp.R;
 import com.jccworld.strawtestapp.debug.VerboseActivity;
 
 import java.util.Random;

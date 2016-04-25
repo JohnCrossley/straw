@@ -10,14 +10,14 @@ import com.jccworld.straw.ui.vo.Persister;
  */
 public class ImageViewPersister implements Persister<ImageView> {
     @Override
-    public Object dehydrate(final ImageView imageView) {
+    public ImageViewBean dehydrate(final ImageView imageView) {
         int resourceId = (Integer) imageView.getTag(R.id.image_view_tag_resource_id);
         ImageViewBean bean = new ImageViewBean(resourceId, imageView.isEnabled());
         return bean;
     }
 
     @Override
-    public void hydrate(final ImageView imageView, final Object payload) {
+    public void hydrate(final ImageView imageView, final PersistedDataBean payload) {
         ImageViewBean bean = (ImageViewBean) payload;
         imageView.setImageResource(bean.resourceId);
         imageView.setEnabled(bean.enabled);

@@ -1,35 +1,37 @@
-package com.jccworld.strawtestapp;
+package com.jccworld.straw.fakes;
+
+import android.app.Activity;
 
 import com.jccworld.straw.KeyValueCache;
 import com.jccworld.straw.UIPersister;
-import com.jccworld.straw.activity.BaseActivity;
+import com.jccworld.straw.activity.ActivityCallbacks;
 
 /**
- * Created by jcc on 19/11/15.
+ * Created by johncrossley on 21/04/16.
  */
-public class EventBusActivity extends BaseActivity {
+public class ValidActivity extends Activity implements ActivityCallbacks {
     @Override
     public void created() {
-        setContentView(R.layout.activity_event_bus);
+        //NO-OP
     }
 
     @Override
     public void onFocus() {
-
+        //NO-OP
     }
 
     @Override
     public void onFocusLost() {
-
+        //NO-OP
     }
 
     @Override
     public void onSave(KeyValueCache keyValueCache, UIPersister uiPersister) {
-
+        //NO-OP
     }
 
     @Override
     public void onLoad(boolean firstRun, KeyValueCache keyValueCache, UIPersister uiPersister) {
-
+        //NO-OP
     }
 }

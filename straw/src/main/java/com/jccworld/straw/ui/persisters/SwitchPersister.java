@@ -10,7 +10,7 @@ import com.jccworld.straw.ui.vo.Persister;
  */
 public class SwitchPersister implements Persister<Switch> {
     @Override
-    public Object dehydrate(final Switch switchButton) {
+    public SwitchBean dehydrate(final Switch switchButton) {
         boolean showText = false;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             showText = switchButton.getShowText();
@@ -22,7 +22,7 @@ public class SwitchPersister implements Persister<Switch> {
     }
 
     @Override
-    public void hydrate(final Switch switchButton, final Object payload) {
+    public void hydrate(final Switch switchButton, final PersistedDataBean payload) {
         SwitchBean bean = (SwitchBean) payload;
         switchButton.setTextOn(bean.textOn);
         switchButton.setTextOff(bean.textOff);

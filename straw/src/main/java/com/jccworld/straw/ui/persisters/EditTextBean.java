@@ -3,7 +3,7 @@ package com.jccworld.straw.ui.persisters;
 /**
  * Created by jcc on 19/11/15.
  */
-public class EditTextBean {
+public class EditTextBean implements PersistedDataBean {
     final String text;
     final boolean enabled;
 

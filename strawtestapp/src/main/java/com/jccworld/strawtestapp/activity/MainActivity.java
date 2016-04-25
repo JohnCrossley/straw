@@ -1,4 +1,4 @@
-package com.jccworld.strawtestapp;
+package com.jccworld.strawtestapp.activity;
 
 import android.view.View;
 import android.widget.Button;
@@ -7,21 +7,25 @@ import com.jccworld.straw.KeyValueCache;
 import com.jccworld.straw.UIPersister;
 import com.jccworld.straw.activity.ActivityController;
 import com.jccworld.straw.activity.BaseActivity;
+import com.jccworld.strawtestapp.R;
 
 /**
  * Created by jcc on 19/11/15.
  */
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Button uiTestsButton;
-    private Button eventBusButton;
+    private Button eventBusPojoButton;
+    private Button eventBusDomainButton;
 
     @Override
     public void created() {
         setContentView(R.layout.activity_main);
         uiTestsButton = (Button) findViewById(R.id.uiTests);
         uiTestsButton.setOnClickListener(this);
-        eventBusButton = (Button) findViewById(R.id.eventBus);
-        eventBusButton.setOnClickListener(this);
+        eventBusPojoButton = (Button) findViewById(R.id.eventBusPojo);
+        eventBusPojoButton.setOnClickListener(this);
+        eventBusDomainButton = (Button) findViewById(R.id.eventBusDomain);
+        eventBusDomainButton.setOnClickListener(this);
     }
 
     @Override
@@ -35,7 +39,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     @Override
-    public void onSave(KeyValueCache keyValueCache, UIPersister uiPersister) {
+    public void onSave(final KeyValueCache keyValueCache, final UIPersister uiPersister) {
 
     }
 
@@ -48,8 +52,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         if (v.getId() == uiTestsButton.getId()) {
             ActivityController.startActivity(this, UITestActivity.class);
-        } else if (v.getId() == eventBusButton.getId()) {
-            ActivityController.startActivity(this, EventBusActivity.class);
         }
+//        } else if (v.getId() == eventBusPojoButton.getId()) {
+//            ActivityController.startActivity(this, PojoEventBusActivity.class);
+//        } else if (v.getId() == eventBusDomainButton.getId()) {
+//            ActivityController.startActivity(this, DomainEventBusActivity.class);
+//        }
     }
 }

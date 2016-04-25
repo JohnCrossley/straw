@@ -9,13 +9,13 @@ import com.jccworld.straw.ui.vo.Persister;
  */
 public class AutoCompleteTextViewPersister implements Persister<AutoCompleteTextView> {
     @Override
-    public Object dehydrate(final AutoCompleteTextView autoCompleteTextView) {
+    public AutoCompleteTextViewBean dehydrate(final AutoCompleteTextView autoCompleteTextView) {
         AutoCompleteTextViewBean bean = new AutoCompleteTextViewBean(autoCompleteTextView.getText().toString(), autoCompleteTextView.isEnabled());
         return bean;
     }
 
     @Override
-    public void hydrate(final AutoCompleteTextView autoCompleteTextView, final Object payload) {
+    public void hydrate(final AutoCompleteTextView autoCompleteTextView, final PersistedDataBean payload) {
         AutoCompleteTextViewBean bean = (AutoCompleteTextViewBean) payload;
         autoCompleteTextView.setText(bean.text);
         autoCompleteTextView.setEnabled(bean.enabled);

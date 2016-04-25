@@ -124,17 +124,17 @@ public abstract class VerboseActivity extends BaseActivity {
     //----------------------------------------------------------------------------------------------
 
 
-    @Override
-    public ActionBar getSupportActionBar() {
-        logV("getSupportActionBar()");
-        return super.getSupportActionBar();
-    }
+//    @Override
+//    public ActionBar getSupportActionBar() {
+//        logV("getSupportActionBar()");
+//        return super.getSupportActionBar();
+//    }
 
-    @Override
-    public void setSupportActionBar(Toolbar toolbar) {
-        logV("setSupportActionBar(toolbar: " + toolbar + ")");
-        super.setSupportActionBar(toolbar);
-    }
+//    @Override
+//    public void setSupportActionBar(Toolbar toolbar) {
+//        logV("setSupportActionBar(toolbar: " + toolbar + ")");
+//        super.setSupportActionBar(toolbar);
+//    }
 
     @Override
     public MenuInflater getMenuInflater() {
@@ -202,17 +202,17 @@ public abstract class VerboseActivity extends BaseActivity {
         super.onTitleChanged(title, color);
     }
 
-    @Override
-    public boolean supportRequestWindowFeature(int featureId) {
-        logV("supportRequestWindowFeature(featureId: " + featureId + ")");
-        return super.supportRequestWindowFeature(featureId);
-    }
+//    @Override
+//    public boolean supportRequestWindowFeature(int featureId) {
+//        logV("supportRequestWindowFeature(featureId: " + featureId + ")");
+//        return super.supportRequestWindowFeature(featureId);
+//    }
 
-    @Override
-    public void supportInvalidateOptionsMenu() {
-        logV("supportInvalidateOptionsMenu()");
-        super.supportInvalidateOptionsMenu();
-    }
+//    @Override
+//    public void supportInvalidateOptionsMenu() {
+//        logV("supportInvalidateOptionsMenu()");
+//        super.supportInvalidateOptionsMenu();
+//    }
 
     @Override
     public void invalidateOptionsMenu() {
@@ -220,23 +220,23 @@ public abstract class VerboseActivity extends BaseActivity {
         super.invalidateOptionsMenu();
     }
 
-    @Override
-    public void onSupportActionModeStarted(ActionMode mode) {
-        logV("onSupportActionModeStarted(mode: " + mode + ")");
-        super.onSupportActionModeStarted(mode);
-    }
+//    @Override
+//    public void onSupportActionModeStarted(ActionMode mode) {
+//        logV("onSupportActionModeStarted(mode: " + mode + ")");
+//        super.onSupportActionModeStarted(mode);
+//    }
 
-    @Override
-    public void onSupportActionModeFinished(ActionMode mode) {
-        logV("onSupportActionModeFinished(mode: " + mode + ")");
-        super.onSupportActionModeFinished(mode);
-    }
+//    @Override
+//    public void onSupportActionModeFinished(ActionMode mode) {
+//        logV("onSupportActionModeFinished(mode: " + mode + ")");
+//        super.onSupportActionModeFinished(mode);
+//    }
 
-    @Override
-    public ActionMode startSupportActionMode(ActionMode.Callback callback) {
-        logV("startSupportActionMode(callback: " + callback + ")");
-        return super.startSupportActionMode(callback);
-    }
+//    @Override
+//    public ActionMode startSupportActionMode(ActionMode.Callback callback) {
+//        logV("startSupportActionMode(callback: " + callback + ")");
+//        return super.startSupportActionMode(callback);
+//    }
 
     @Override
     public boolean onCreatePanelMenu(int featureId, Menu menu) {
@@ -262,11 +262,11 @@ public abstract class VerboseActivity extends BaseActivity {
         return super.onMenuOpened(featureId, menu);
     }
 
-    @Override
-    protected boolean onPrepareOptionsPanel(View view, Menu menu) {
-        logV("onPrepareOptionsPanel(view: " + view + ", menu: " + menu + ")");
-        return super.onPrepareOptionsPanel(view, menu);
-    }
+//    @Override
+//    protected boolean onPrepareOptionsPanel(View view, Menu menu) {
+//        logV("onPrepareOptionsPanel(view: " + view + ", menu: " + menu + ")");
+//        return super.onPrepareOptionsPanel(view, menu);
+//    }
 
     @Override
     public void onBackPressed() {
@@ -274,72 +274,72 @@ public abstract class VerboseActivity extends BaseActivity {
         super.onBackPressed();
     }
 
-    @Override
-    public void setSupportProgressBarVisibility(boolean visible) {
-        logV("setSupportProgressBarVisibility(visible: " + visible + ")");
-        super.setSupportProgressBarVisibility(visible);
-    }
+//    @Override
+//    public void setSupportProgressBarVisibility(boolean visible) {
+//        logV("setSupportProgressBarVisibility(visible: " + visible + ")");
+//        super.setSupportProgressBarVisibility(visible);
+//    }
 
-    @Override
-    public void setSupportProgressBarIndeterminateVisibility(boolean visible) {
-        logV("setSupportProgressBarIndeterminateVisibility(visible: " + visible + ")");
-        super.setSupportProgressBarIndeterminateVisibility(visible);
-    }
+//    @Override
+//    public void setSupportProgressBarIndeterminateVisibility(boolean visible) {
+//        logV("setSupportProgressBarIndeterminateVisibility(visible: " + visible + ")");
+//        super.setSupportProgressBarIndeterminateVisibility(visible);
+//    }
 
-    @Override
-    public void setSupportProgressBarIndeterminate(boolean indeterminate) {
-        logV("setSupportProgressBarIndeterminate(indeterminate: " + indeterminate + ")");
-        super.setSupportProgressBarIndeterminate(indeterminate);
-    }
+//    @Override
+//    public void setSupportProgressBarIndeterminate(boolean indeterminate) {
+//        logV("setSupportProgressBarIndeterminate(indeterminate: " + indeterminate + ")");
+//        super.setSupportProgressBarIndeterminate(indeterminate);
+//    }
 
-    @Override
-    public void setSupportProgress(int progress) {
-        logV("setSupportProgress(progress: " + progress + ")");
-        super.setSupportProgress(progress);
-    }
+//    @Override
+//    public void setSupportProgress(int progress) {
+//        logV("setSupportProgress(progress: " + progress + ")");
+//        super.setSupportProgress(progress);
+//    }
 
-    @Override
-    public void onCreateSupportNavigateUpTaskStack(TaskStackBuilder builder) {
-        logV("onCreateSupportNavigateUpTaskStack(taskStackBuilder: " + builder + ")");
-        super.onCreateSupportNavigateUpTaskStack(builder);
-    }
+//    @Override
+//    public void onCreateSupportNavigateUpTaskStack(TaskStackBuilder builder) {
+//        logV("onCreateSupportNavigateUpTaskStack(taskStackBuilder: " + builder + ")");
+//        super.onCreateSupportNavigateUpTaskStack(builder);
+//    }
 
-    @Override
-    public void onPrepareSupportNavigateUpTaskStack(TaskStackBuilder builder) {
-        logV("onPrepareSupportNavigateUpTaskStack(taskStackBuilder: " + builder + ")");
-        super.onPrepareSupportNavigateUpTaskStack(builder);
-    }
+//    @Override
+//    public void onPrepareSupportNavigateUpTaskStack(TaskStackBuilder builder) {
+//        logV("onPrepareSupportNavigateUpTaskStack(taskStackBuilder: " + builder + ")");
+//        super.onPrepareSupportNavigateUpTaskStack(builder);
+//    }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        logV("onSupportNavigateUp()");
-        return super.onSupportNavigateUp();
-    }
+//    @Override
+//    public boolean onSupportNavigateUp() {
+//        logV("onSupportNavigateUp()");
+//        return super.onSupportNavigateUp();
+//    }
 
-    @Override
-    public Intent getSupportParentActivityIntent() {
-        logV("getSupportParentActivityIntent()");
-        return super.getSupportParentActivityIntent();
-    }
+//    @Override
+//    public Intent getSupportParentActivityIntent() {
+//        logV("getSupportParentActivityIntent()");
+//        return super.getSupportParentActivityIntent();
+//    }
 
-    @Override
-    public boolean supportShouldUpRecreateTask(Intent targetIntent) {
-        logV("supportShouldUpRecreateTask(targetIntent: " + targetIntent + ")");
-        return super.supportShouldUpRecreateTask(targetIntent);
-    }
+//    @Override
+//    public boolean supportShouldUpRecreateTask(Intent targetIntent) {
+//        logV("supportShouldUpRecreateTask(targetIntent: " + targetIntent + ")");
+//        return super.supportShouldUpRecreateTask(targetIntent);
+//    }
 
-    @Override
-    public void supportNavigateUpTo(Intent upIntent) {
-        logV("supportNavigateUpTo(upIntent: " + upIntent + ")");
-        super.supportNavigateUpTo(upIntent);
-    }
+//    @Override
+//    public void supportNavigateUpTo(Intent upIntent) {
+//        logV("supportNavigateUpTo(upIntent: " + upIntent + ")");
+//        super.supportNavigateUpTo(upIntent);
+//    }
 
-    @Nullable
-    @Override
-    public ActionBarDrawerToggle.Delegate getV7DrawerToggleDelegate() {
-        logV("getV7DrawerToggleDelegate()");
-        return super.getV7DrawerToggleDelegate();
-    }
+//    @Nullable
+//    @Override
+//    public ActionBarDrawerToggle.Delegate getV7DrawerToggleDelegate() {
+//        logV("getV7DrawerToggleDelegate()");
+//        return super.getV7DrawerToggleDelegate();
+//    }
 
     @Override
     public boolean onKeyShortcut(int keyCode, KeyEvent event) {
@@ -353,11 +353,11 @@ public abstract class VerboseActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    public void onSupportContentChanged() {
-        logV("onSupportContentChanged()");
-        super.onSupportContentChanged();
-    }
+//    @Override
+//    public void onSupportContentChanged() {
+//        logV("onSupportContentChanged()");
+//        super.onSupportContentChanged();
+//    }
 
     @Override
     public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
@@ -377,35 +377,35 @@ public abstract class VerboseActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    @Override
-    public void supportFinishAfterTransition() {
-        logV("supportFinishAfterTransition()");
-        super.supportFinishAfterTransition();
-    }
+//    @Override
+//    public void supportFinishAfterTransition() {
+//        logV("supportFinishAfterTransition()");
+//        super.supportFinishAfterTransition();
+//    }
 
-    @Override
-    public void setEnterSharedElementCallback(SharedElementCallback callback) {
-        logV("setEnterSharedElementCallback(sharedElementCallback: " + callback + ")");
-        super.setEnterSharedElementCallback(callback);
-    }
+//    @Override
+//    public void setEnterSharedElementCallback(SharedElementCallback callback) {
+//        logV("setEnterSharedElementCallback(sharedElementCallback: " + callback + ")");
+//        super.setEnterSharedElementCallback(callback);
+//    }
 
-    @Override
-    public void setExitSharedElementCallback(SharedElementCallback listener) {
-        logV("setExitSharedElementCallback(sharedElementCallback: " + listener + ")");
-        super.setExitSharedElementCallback(listener);
-    }
+//    @Override
+//    public void setExitSharedElementCallback(SharedElementCallback listener) {
+//        logV("setExitSharedElementCallback(sharedElementCallback: " + listener + ")");
+//        super.setExitSharedElementCallback(listener);
+//    }
 
-    @Override
-    public void supportPostponeEnterTransition() {
-        logV("supportPostponeEnterTransition()");
-        super.supportPostponeEnterTransition();
-    }
+//    @Override
+//    public void supportPostponeEnterTransition() {
+//        logV("supportPostponeEnterTransition()");
+//        super.supportPostponeEnterTransition();
+//    }
 
-    @Override
-    public void supportStartPostponedEnterTransition() {
-        logV("supportStartPostponedEnterTransition()");
-        super.supportStartPostponedEnterTransition();
-    }
+//    @Override
+//    public void supportStartPostponedEnterTransition() {
+//        logV("supportStartPostponedEnterTransition()");
+//        super.supportStartPostponedEnterTransition();
+//    }
 
     @Override
     public void onLowMemory() {
@@ -431,11 +431,11 @@ public abstract class VerboseActivity extends BaseActivity {
         super.onResume();
     }
 
-    @Override
-    protected void onResumeFragments() {
-        logV("onResumeFragments()");
-        super.onResumeFragments();
-    }
+//    @Override
+//    protected void onResumeFragments() {
+//        logV("onResumeFragments()");
+//        super.onResumeFragments();
+//    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -449,17 +449,17 @@ public abstract class VerboseActivity extends BaseActivity {
         super.onStart();
     }
 
-    @Override
-    public Object onRetainCustomNonConfigurationInstance() {
-        logV("onRetainCustomNonConfigurationInstance()");
-        return super.onRetainCustomNonConfigurationInstance();
-    }
+//    @Override
+//    public Object onRetainCustomNonConfigurationInstance() {
+//        logV("onRetainCustomNonConfigurationInstance()");
+//        return super.onRetainCustomNonConfigurationInstance();
+//    }
 
-    @Override
-    public Object getLastCustomNonConfigurationInstance() {
-        logV("getLastCustomNonConfigurationInstance()");
-        return super.getLastCustomNonConfigurationInstance();
-    }
+//    @Override
+//    public Object getLastCustomNonConfigurationInstance() {
+//        logV("getLastCustomNonConfigurationInstance()");
+//        return super.getLastCustomNonConfigurationInstance();
+//    }
 
     @Override
     public void dump(String prefix, FileDescriptor fd, PrintWriter writer, String[] args) {
@@ -467,17 +467,17 @@ public abstract class VerboseActivity extends BaseActivity {
         super.dump(prefix, fd, writer, args);
     }
 
-    @Override
-    public void onAttachFragment(Fragment fragment) {
-        logV("onAttachFragment(fragment: " + fragment + ")");
-        super.onAttachFragment(fragment);
-    }
+//    @Override
+//    public void onAttachFragment(Fragment fragment) {
+//        logV("onAttachFragment(fragment: " + fragment + ")");
+//        super.onAttachFragment(fragment);
+//    }
 
-    @Override
-    public FragmentManager getSupportFragmentManager() {
-        logV("getSupportFragmentManager()");
-        return super.getSupportFragmentManager();
-    }
+//    @Override
+//    public FragmentManager getSupportFragmentManager() {
+//        logV("getSupportFragmentManager()");
+//        return super.getSupportFragmentManager();
+//    }
 
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {
@@ -485,17 +485,17 @@ public abstract class VerboseActivity extends BaseActivity {
         super.startActivityForResult(intent, requestCode);
     }
 
-    @Override
-    public void startActivityFromFragment(Fragment fragment, Intent intent, int requestCode) {
-        logV("startActivityFromFragment(fragment: " + fragment + ", intent: " + intent + ", requestCode: " + requestCode + ")");
-        super.startActivityFromFragment(fragment, intent, requestCode);
-    }
+//    @Override
+//    public void startActivityFromFragment(Fragment fragment, Intent intent, int requestCode) {
+//        logV("startActivityFromFragment(fragment: " + fragment + ", intent: " + intent + ", requestCode: " + requestCode + ")");
+//        super.startActivityFromFragment(fragment, intent, requestCode);
+//    }
 
-    @Override
-    public LoaderManager getSupportLoaderManager() {
-        logV("getSupportLoaderManager()");
-        return super.getSupportLoaderManager();
-    }
+//    @Override
+//    public LoaderManager getSupportLoaderManager() {
+//        logV("getSupportLoaderManager()");
+//        return super.getSupportLoaderManager();
+//    }
 
     @Override
     public Intent getIntent() {

@@ -9,14 +9,14 @@ import com.jccworld.straw.ui.vo.Persister;
  */
 public class ToggleButtonPersister implements Persister<ToggleButton> {
     @Override
-    public Object dehydrate(final ToggleButton toggleButton) {
+    public ToggleButtonBean dehydrate(final ToggleButton toggleButton) {
         ToggleButtonBean bean = new ToggleButtonBean(toggleButton.getTextOn().toString(), toggleButton.getTextOff().toString(),
                 toggleButton.isChecked(), toggleButton.isEnabled());
         return bean;
     }
 
     @Override
-    public void hydrate(final ToggleButton toggleButton, final Object payload) {
+    public void hydrate(final ToggleButton toggleButton, final PersistedDataBean payload) {
         ToggleButtonBean bean = (ToggleButtonBean) payload;
         toggleButton.setTextOn(bean.textOn);
         toggleButton.setTextOff(bean.textOff);

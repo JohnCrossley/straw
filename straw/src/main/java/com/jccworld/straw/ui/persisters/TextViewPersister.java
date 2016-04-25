@@ -9,13 +9,13 @@ import com.jccworld.straw.ui.vo.Persister;
  */
 public class TextViewPersister implements Persister<TextView> {
     @Override
-    public Object dehydrate(final TextView textView) {
+    public TextViewBean dehydrate(final TextView textView) {
         TextViewBean bean = new TextViewBean(textView.getText().toString(), textView.isEnabled());
         return bean;
     }
 
     @Override
-    public void hydrate(final TextView textView, final Object payload) {
+    public void hydrate(final TextView textView, final PersistedDataBean payload) {
         TextViewBean bean = (TextViewBean) payload;
         textView.setText(bean.text);
         textView.setEnabled(bean.enabled);

@@ -20,6 +20,7 @@ import com.jccworld.straw.ui.persisters.EditTextPersister;
 import com.jccworld.straw.ui.persisters.ImageButtonPersister;
 import com.jccworld.straw.ui.persisters.ImageViewPersister;
 import com.jccworld.straw.ui.persisters.Persisted;
+import com.jccworld.straw.ui.persisters.PersistedDataBean;
 import com.jccworld.straw.ui.persisters.RadioGroupPersister;
 import com.jccworld.straw.ui.persisters.SpinnerPersister;
 import com.jccworld.straw.ui.persisters.SwitchPersister;
@@ -35,6 +36,11 @@ import java.util.Map;
 /**
  * Serialise the data from UI elements (i.e. value, enabled, etc) so a new instance can be restored
  * in the same state
+ *
+ * TODO deconstruct reflection logic from collection.
+ * Inject handlers into Constructor -> this may need to be a Application.getXFactory
+ * method because of the Activity lifecycle preventing IOC.  Don't want to force a DI framework
+ * upon consumers.
  *
  * Created by jcc on 26/10/15.
  */
@@ -60,25 +66,25 @@ public class UIPersister {
     }
 
     public void save(final Activity activity) throws IllegalArgumentException {
-        Field[] fields = activity.getClass().getDeclaredFields();
+        final Field[] fields = activity.getClass().getDeclaredFields();
 
-        for(Field field : fields) {
-            Persisted annotation = field.getAnnotation(Persisted.class);
+        for(final Field field : fields) {
+            final Persisted annotation = field.getAnnotation(Persisted.class);
 
             if (annotation != null) {
-                Class<?> type = field.getType();
+                final Class<?> type = field.getType();
                 if (!matchers.containsKey(type)) {
                     throw new IllegalArgumentException("Cannot persist objects of type: " + type + ".  Please remove the @Persisted annotation.");
                 }
 
-                Persister persister = matchers.get(type);
+                final Persister persister = matchers.get(type);
 
                 try {
                     field.setAccessible(true);
-                    Object viewToSerialise = field.get(activity);
+                    final Object viewToSerialise = field.get(activity);
 
-                    Method method = persister.getClass().getMethod(DEHYDRATE_METHOD, type);
-                    Object serialisedObject = method.invoke(persister, viewToSerialise);
+                    final Method method = persister.getClass().getMethod(DEHYDRATE_METHOD, type);
+                    final Object serialisedObject = method.invoke(persister, viewToSerialise);
 
                     map.put(field.getName(), serialisedObject);
 
@@ -90,24 +96,24 @@ public class UIPersister {
     }
 
     public void load(final Activity activity) throws IllegalArgumentException {
-        Field[] fields = activity.getClass().getDeclaredFields();
+        final Field[] fields = activity.getClass().getDeclaredFields();
 
-        for(Field field : fields) {
-            Persisted annotation = field.getAnnotation(Persisted.class);
+        for(final Field field : fields) {
+            final Persisted annotation = field.getAnnotation(Persisted.class);
 
             if (annotation != null) {
-                Class<?> type = field.getType();
+                final Class<?> type = field.getType();
                 if (!matchers.containsKey(type)) {
                     throw new IllegalArgumentException("Cannot persist objects of type: " + type + ".  Please remove the @Persisted annotation.");
                 }
 
-                Persister persister = matchers.get(type);
+                final Persister persister = matchers.get(type);
 
                 try {
                     field.setAccessible(true);
-                    Object viewToPopulate = field.get(activity);
+                    final Object viewToPopulate = field.get(activity);
 
-                    Method method = persister.getClass().getMethod(HYDRATE_METHOD, type, Object.class);
+                    final Method method = persister.getClass().getMethod(HYDRATE_METHOD, type, PersistedDataBean.class);
                     method.invoke(persister, viewToPopulate, map.get(field.getName()));
 
                 } catch (Exception e) {
