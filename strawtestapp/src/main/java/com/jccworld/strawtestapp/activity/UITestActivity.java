@@ -27,8 +27,8 @@ import java.util.Random;
 public class UITestActivity extends VerboseActivity implements View.OnClickListener {
     private static final String INITIAL_TEXT = "sample text";
     private static final String RUNTIME_CHANGE_TEXT = "new changed text";
-    private static final String TEXT_ON = "yea";
-    private static final String TEXT_OFF = "nah";
+    private static final String TEXT_ON = "one";
+    private static final String TEXT_OFF = "zero";
 
     private static final int INITIAL_IMAGE_RES_ID = R.drawable.tick;
     private static final int RUNTIME_CHANGE_IMAGE_RES_ID = R.drawable.tick_after;

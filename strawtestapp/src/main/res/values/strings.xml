@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">strawtestapp</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="loginBtn">Login</string>
+    <string name="forgotBtn">Forgot</string>
+    <string name="loading">Loading, please wait...</string>
+    <string name="dashboard">Dashboard</string>
 </resources>

@@ -4,6 +4,9 @@ import com.jccworld.straw.activity.ActivityCache;
 import com.jccworld.straw.application.ApplicationCallbacks;
 import com.jccworld.strawtestapp.debug.VerboseApplication;
 import com.jccworld.strawtestapp.di.module.application.ApplicationModule;
+import com.jccworld.strawtestapp.di.module.application.DomainEventBusModule;
+import com.jccworld.strawtestapp.di.module.application.LoginEventBusModule;
+import com.jccworld.strawtestapp.di.module.application.PojoEventBusModule;
 
 import dagger.ObjectGraph;
 
@@ -21,6 +24,8 @@ public class Application extends VerboseApplication implements ApplicationCallba
         System.out.println("JCC: APP STARTED ----------------------------------------------------------------------------------------------------");
 
         objectGraph = ObjectGraph.create(new ApplicationModule(this));
+        objectGraph = objectGraph.plus(new PojoEventBusModule(), new DomainEventBusModule(this), new LoginEventBusModule(this));
+
         objectGraph.inject(this);
 
         activityCache = new ActivityCache();

@@ -23,18 +23,21 @@
         <activity android:name=".activity.UITestActivity" android:exported="false" />
 
         <activity android:name=".activity.PojoEventBusActivity" android:exported="false" />
-
         <activity android:name=".activity.DomainEventBusActivity" android:exported="false" />
 
-        <service android:name=".service.NumberFlattenedService" android:exported="false" />
+        <activity android:name=".activity.LoginStrawActivity" android:exported="false" />
+        <activity android:name=".activity.LoginNoStrawActivity" android:exported="false" />
+        <activity android:name=".activity.DashboardActivity" android:exported="false" />
 
-        <service android:name=".service.SentenceFlattenedService" android:exported="false" />
+
+        <service android:name=".service.NumberPojoService" android:exported="false" />
+        <service android:name=".service.SentencePojoService" android:exported="false" />
 
         <service android:name=".service.NumberDomainService" android:exported="false" />
-
         <service android:name=".service.SentenceDomainService" android:exported="false" />
 
-
+        <service android:name=".service.LoginStrawService" android:exported="false" />
+        <service android:name=".service.LoginNoStrawService" android:exported="false" />
     </application>
 
 </manifest>

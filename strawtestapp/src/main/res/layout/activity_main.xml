@@ -24,6 +24,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Event bus Domain"
+    />
+
+    <Button
+        android:id="@+id/loginStraw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Example login screen with Straw"
+        />
+
+    <Button
+        android:id="@+id/loginNoStraw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Event login screen without Straw"
         />
 
 </LinearLayout>

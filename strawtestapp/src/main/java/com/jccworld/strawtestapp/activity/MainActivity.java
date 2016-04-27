@@ -16,6 +16,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Button uiTestsButton;
     private Button eventBusPojoButton;
     private Button eventBusDomainButton;
+    private Button loginStrawButton;
+    private Button loginNoStrawButton;
 
     @Override
     public void created() {
@@ -26,6 +28,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         eventBusPojoButton.setOnClickListener(this);
         eventBusDomainButton = (Button) findViewById(R.id.eventBusDomain);
         eventBusDomainButton.setOnClickListener(this);
+        loginStrawButton = (Button) findViewById(R.id.loginStraw);
+        loginStrawButton.setOnClickListener(this);
+        loginNoStrawButton = (Button) findViewById(R.id.loginNoStraw);
+        loginNoStrawButton.setOnClickListener(this);
     }
 
     @Override
@@ -52,11 +58,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         if (v.getId() == uiTestsButton.getId()) {
             ActivityController.startActivity(this, UITestActivity.class);
+        } else if (v.getId() == eventBusPojoButton.getId()) {
+            ActivityController.startActivity(this, PojoEventBusActivity.class);
+        } else if (v.getId() == eventBusDomainButton.getId()) {
+            ActivityController.startActivity(this, DomainEventBusActivity.class);
+        } else if (v.getId() == loginStrawButton.getId()) {
+            ActivityController.startActivity(this, LoginStrawActivity.class);
+        } else if (v.getId() == loginNoStrawButton.getId()) {
+            ActivityController.startActivity(this, LoginNoStrawActivity.class);
         }
-//        } else if (v.getId() == eventBusPojoButton.getId()) {
-//            ActivityController.startActivity(this, PojoEventBusActivity.class);
-//        } else if (v.getId() == eventBusDomainButton.getId()) {
-//            ActivityController.startActivity(this, DomainEventBusActivity.class);
-//        }
     }
 }

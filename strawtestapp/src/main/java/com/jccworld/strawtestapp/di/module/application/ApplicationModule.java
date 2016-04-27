@@ -3,13 +3,7 @@ package com.jccworld.strawtestapp.di.module.application;
 import com.jccworld.strawtestapp.Application;
 import com.jccworld.strawtestapp.di.module.DIModule;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.inject.Singleton;
-
 import dagger.Module;
-import dagger.Provides;
 
 /**
  * Created by johncrossley on 27/11/15.

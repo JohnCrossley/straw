@@ -5,6 +5,8 @@ import android.app.Service;
 import android.content.Context;
 
 import com.jccworld.strawtestapp.Application;
+import com.jccworld.strawtestapp.di.module.activity.ActivityModule;
+import com.jccworld.strawtestapp.di.module.service.ServiceModule;
 
 /**
  * Created by johncrossley on 25/11/15.
@@ -15,6 +17,7 @@ public class ProductionInjector implements Injector {
     public void inject(final Activity activity) {
         getApplication(activity.getApplicationContext())
                 .getObjectGraph()
+                .plus(new ActivityModule(activity))
                 .inject(activity);
     }
 
@@ -22,6 +25,7 @@ public class ProductionInjector implements Injector {
     public void inject(final Service service) {
         getApplication(service.getApplicationContext())
                 .getObjectGraph()
+                .plus(new ServiceModule())
                 .inject(service);
     }
 
