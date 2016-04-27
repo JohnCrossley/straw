@@ -17,7 +17,7 @@ public class SwitchPersister implements Persister<Switch> {
         }
 
         SwitchBean bean = new SwitchBean(switchButton.getTextOn().toString(), switchButton.getTextOff().toString(),
-                showText, switchButton.isChecked(), switchButton.isEnabled());
+                showText, switchButton.isChecked(), switchButton.isEnabled(), switchButton.getVisibility());
         return bean;
     }
 
@@ -33,5 +33,6 @@ public class SwitchPersister implements Persister<Switch> {
 
         switchButton.setChecked(bean.checked);
         switchButton.setEnabled(bean.enabled);
+        switchButton.setVisibility(bean.visibility);
     }
 }

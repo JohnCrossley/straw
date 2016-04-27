@@ -7,6 +7,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -21,6 +22,7 @@ import com.jccworld.straw.ui.persisters.ImageButtonPersister;
 import com.jccworld.straw.ui.persisters.ImageViewPersister;
 import com.jccworld.straw.ui.persisters.Persisted;
 import com.jccworld.straw.ui.persisters.PersistedDataBean;
+import com.jccworld.straw.ui.persisters.ProgressBarPersister;
 import com.jccworld.straw.ui.persisters.RadioGroupPersister;
 import com.jccworld.straw.ui.persisters.SpinnerPersister;
 import com.jccworld.straw.ui.persisters.SwitchPersister;
@@ -63,6 +65,7 @@ public class UIPersister {
         matchers.put(Switch.class, new SwitchPersister());
         matchers.put(TextView.class, new TextViewPersister());
         matchers.put(ToggleButton.class, new ToggleButtonPersister());
+        matchers.put(ProgressBar.class, new ProgressBarPersister());
     }
 
     public void save(final Activity activity) throws IllegalArgumentException {

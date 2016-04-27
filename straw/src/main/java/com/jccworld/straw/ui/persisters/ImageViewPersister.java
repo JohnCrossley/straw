@@ -12,7 +12,7 @@ public class ImageViewPersister implements Persister<ImageView> {
     @Override
     public ImageViewBean dehydrate(final ImageView imageView) {
         int resourceId = (Integer) imageView.getTag(R.id.image_view_tag_resource_id);
-        ImageViewBean bean = new ImageViewBean(resourceId, imageView.isEnabled());
+        ImageViewBean bean = new ImageViewBean(resourceId, imageView.isEnabled(), imageView.getVisibility());
         return bean;
     }
 
@@ -21,6 +21,7 @@ public class ImageViewPersister implements Persister<ImageView> {
         ImageViewBean bean = (ImageViewBean) payload;
         imageView.setImageResource(bean.resourceId);
         imageView.setEnabled(bean.enabled);
+        imageView.setVisibility(bean.visibility);
         imageView.setTag(R.id.image_view_tag_resource_id, bean.resourceId);
     }
 }

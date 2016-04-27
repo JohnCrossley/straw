@@ -10,7 +10,8 @@ import com.jccworld.straw.ui.vo.Persister;
 public class TextViewPersister implements Persister<TextView> {
     @Override
     public TextViewBean dehydrate(final TextView textView) {
-        TextViewBean bean = new TextViewBean(textView.getText().toString(), textView.isEnabled());
+        TextViewBean bean = new TextViewBean(textView.getText().toString(), textView.isEnabled(),
+                textView.getVisibility());
         return bean;
     }
 
@@ -19,5 +20,6 @@ public class TextViewPersister implements Persister<TextView> {
         TextViewBean bean = (TextViewBean) payload;
         textView.setText(bean.text);
         textView.setEnabled(bean.enabled);
+        textView.setVisibility(bean.visibility);
     }
 }

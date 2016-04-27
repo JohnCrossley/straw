@@ -11,7 +11,7 @@ public class ButtonPersister implements Persister<Button> {
 
     @Override
     public ButtonBean dehydrate(final Button button) {
-        ButtonBean bean = new ButtonBean(button.getText().toString(), button.isEnabled());
+        ButtonBean bean = new ButtonBean(button.getText().toString(), button.isEnabled(), button.getVisibility());
         return bean;
     }
 
@@ -20,5 +20,6 @@ public class ButtonPersister implements Persister<Button> {
         ButtonBean bean = (ButtonBean) payload;
         button.setText(bean.text);
         button.setEnabled(bean.enabled);
+        button.setVisibility(bean.visibility);
     }
 }

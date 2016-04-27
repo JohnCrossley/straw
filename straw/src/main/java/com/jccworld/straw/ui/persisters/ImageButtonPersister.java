@@ -12,7 +12,7 @@ public class ImageButtonPersister implements Persister<ImageButton> {
     @Override
     public ImageButtonBean dehydrate(final ImageButton imageButton) {
         int resourceId = (Integer) imageButton.getTag(R.id.image_view_tag_resource_id);
-        ImageButtonBean bean = new ImageButtonBean(resourceId, imageButton.isEnabled());
+        ImageButtonBean bean = new ImageButtonBean(resourceId, imageButton.isEnabled(), imageButton.getVisibility());
         return bean;
     }
 
@@ -21,6 +21,7 @@ public class ImageButtonPersister implements Persister<ImageButton> {
         ImageButtonBean bean = (ImageButtonBean) payload;
         imageButton.setImageResource(bean.resourceId);
         imageButton.setEnabled(bean.enabled);
+        imageButton.setVisibility(bean.visibility);
         imageButton.setTag(R.id.image_view_tag_resource_id, bean.resourceId);
     }
 }

@@ -19,9 +19,9 @@ public class RadioGroupPersister implements Persister<RadioGroup> {
             View childView = radioGroup.getChildAt(i);
 
             if (childView instanceof RadioButton) {
-                radioButtonBeans[i] = new RadioButtonBean(((RadioButton)childView).getText().toString(), childView.isEnabled());
+                radioButtonBeans[i] = new RadioButtonBean(((RadioButton)childView).getText().toString(), childView.isEnabled(), childView.getVisibility());
             } else {
-                radioButtonBeans[i] = new RadioButtonBean(childView.isEnabled());
+                radioButtonBeans[i] = new RadioButtonBean(childView.isEnabled(), childView.getVisibility());
             }
 
             if (childView.getId() >= 0 && childView.getId() == radioGroup.getCheckedRadioButtonId()) {
@@ -43,6 +43,7 @@ public class RadioGroupPersister implements Persister<RadioGroup> {
                 ((RadioButton) child).setText(bean.radioButtonBeans[i].text);
             }
             radioGroup.getChildAt(i).setEnabled(bean.radioButtonBeans[i].enabled);
+            radioGroup.getChildAt(i).setVisibility(bean.radioButtonBeans[i].visibility);
 
             if (i >= 0 && i == bean.selectedIdx) {
                 if (child instanceof RadioButton) {

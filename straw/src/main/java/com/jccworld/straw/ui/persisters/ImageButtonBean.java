@@ -6,9 +6,11 @@ package com.jccworld.straw.ui.persisters;
 public class ImageButtonBean implements PersistedDataBean {
     final int resourceId;
     final boolean enabled;
+    final int visibility;
 
-    ImageButtonBean(final int resourceId, final boolean enabled) {
+    ImageButtonBean(final int resourceId, final boolean enabled, int visibility) {
         this.resourceId = resourceId;
         this.enabled = enabled;
+        this.visibility = visibility;
     }
 }

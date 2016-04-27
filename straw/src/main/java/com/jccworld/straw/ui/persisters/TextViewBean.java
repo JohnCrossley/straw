@@ -6,9 +6,11 @@ package com.jccworld.straw.ui.persisters;
 public class TextViewBean implements PersistedDataBean {
     final String text;
     final boolean enabled;
+    final int visibility;
 
-    TextViewBean(final String text, final boolean enabled) {
+    TextViewBean(final String text, final boolean enabled, int visibility) {
         this.text = text;
         this.enabled = enabled;
+        this.visibility = visibility;
     }
 }

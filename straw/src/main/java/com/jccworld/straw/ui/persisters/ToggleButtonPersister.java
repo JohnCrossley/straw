@@ -11,7 +11,7 @@ public class ToggleButtonPersister implements Persister<ToggleButton> {
     @Override
     public ToggleButtonBean dehydrate(final ToggleButton toggleButton) {
         ToggleButtonBean bean = new ToggleButtonBean(toggleButton.getTextOn().toString(), toggleButton.getTextOff().toString(),
-                toggleButton.isChecked(), toggleButton.isEnabled());
+                toggleButton.isChecked(), toggleButton.isEnabled(), toggleButton.getVisibility());
         return bean;
     }
 
@@ -22,5 +22,6 @@ public class ToggleButtonPersister implements Persister<ToggleButton> {
         toggleButton.setTextOff(bean.textOff);
         toggleButton.setChecked(bean.checked);
         toggleButton.setEnabled(bean.enabled);
+        toggleButton.setVisibility(bean.visibility);
     }
 }

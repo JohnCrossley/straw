@@ -21,7 +21,7 @@ public class SpinnerPersister implements Persister<Spinner> {
             }
         }
 
-        SpinnerBean bean = new SpinnerBean(selectedIdx, spinner.isEnabled());
+        SpinnerBean bean = new SpinnerBean(selectedIdx, spinner.isEnabled(), spinner.getVisibility());
         return bean;
     }
 
@@ -34,5 +34,6 @@ public class SpinnerPersister implements Persister<Spinner> {
         }
 
         spinner.setEnabled(bean.enabled);
+        spinner.setVisibility(bean.visibility);
     }
 }

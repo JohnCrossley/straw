@@ -1,6 +1,7 @@
 package com.jccworld.straw.ui.persisters;
 
 import android.text.Editable;
+import android.view.View;
 import android.widget.TextView;
 
 import org.junit.Before;
@@ -18,6 +19,8 @@ import static org.mockito.Mockito.when;
 public class TextViewPersisterTest {
     private static final String A_VALID_TEXT_ENTRY = "A VALID TEXT ENTRY";
     private static final boolean A_VALID_ENABLED_STATE = true;
+    private static final int A_VALID_VISIBILITY = View.VISIBLE;
+
     private TextViewPersister sut;
 
     @Mock
@@ -45,12 +48,13 @@ public class TextViewPersisterTest {
         // verify
         assertEquals(A_VALID_TEXT_ENTRY, result.text);
         assertEquals(A_VALID_ENABLED_STATE, result.enabled);
+        assertEquals(A_VALID_VISIBILITY, result.visibility);
     }
 
     @Test
     public void hydrates() {
         // init
-        final PersistedDataBean persistedDataBean = new TextViewBean(A_VALID_TEXT_ENTRY, A_VALID_ENABLED_STATE);
+        final PersistedDataBean persistedDataBean = new TextViewBean(A_VALID_TEXT_ENTRY, A_VALID_ENABLED_STATE, A_VALID_VISIBILITY);
 
         // run
         sut.hydrate(mockTextView, persistedDataBean);
@@ -58,5 +62,6 @@ public class TextViewPersisterTest {
         // verify
         verify(mockTextView).setText(A_VALID_TEXT_ENTRY);
         verify(mockTextView).setEnabled(A_VALID_ENABLED_STATE);
+        verify(mockTextView).setVisibility(A_VALID_VISIBILITY);
     }
 }

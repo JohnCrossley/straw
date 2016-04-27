@@ -1,5 +1,6 @@
 package com.jccworld.straw.ui.persisters;
 
+import android.view.View;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 
@@ -20,6 +21,7 @@ public class SpinnerPersisterTest {
 
     private static final int A_SELECTED_IDX = 3;
     private static final Long A_SELECTED_ID = 12345L;
+    private static final int A_VALID_VISIBILITY = View.VISIBLE;
 
     private SpinnerPersister sut;
 
@@ -54,12 +56,13 @@ public class SpinnerPersisterTest {
         // verify
         assertEquals(A_SELECTED_IDX, result.selectedIdx);
         assertEquals(A_VALID_ENABLED_STATE, result.enabled);
+        assertEquals(A_VALID_VISIBILITY, result.visibility);
     }
 
     @Test
     public void hydrates() {
         // init
-        final PersistedDataBean persistedDataBean = new SpinnerBean(A_SELECTED_IDX, A_VALID_ENABLED_STATE);
+        final PersistedDataBean persistedDataBean = new SpinnerBean(A_SELECTED_IDX, A_VALID_ENABLED_STATE, A_VALID_VISIBILITY);
 
         // run
         sut.hydrate(mockSpinner, persistedDataBean);
@@ -67,5 +70,6 @@ public class SpinnerPersisterTest {
         // verify
         verify(mockSpinner).setSelection(A_SELECTED_IDX);
         verify(mockSpinner).setEnabled(A_VALID_ENABLED_STATE);
+        verify(mockSpinner).setVisibility(A_VALID_VISIBILITY);
     }
 }

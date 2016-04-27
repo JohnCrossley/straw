@@ -1,6 +1,7 @@
 package com.jccworld.straw.ui.persisters;
 
 import android.text.Editable;
+import android.view.View;
 import android.widget.EditText;
 
 import org.junit.Before;
@@ -18,6 +19,8 @@ import static org.mockito.Mockito.when;
 public class EditTextPersisterTest {
     private static final String A_VALID_TEXT_ENTRY = "A VALID TEXT ENTRY";
     private static final boolean A_VALID_ENABLED_STATE = true;
+    private static final int A_VALID_VISIBILITY = View.VISIBLE;
+
     private EditTextPersister sut;
 
     @Mock
@@ -38,6 +41,7 @@ public class EditTextPersisterTest {
         when(mockEditText.getText()).thenReturn(mockEditable);
         when(mockEditable.toString()).thenReturn(A_VALID_TEXT_ENTRY);
         when(mockEditText.isEnabled()).thenReturn(A_VALID_ENABLED_STATE);
+        when(mockEditText.getVisibility()).thenReturn(A_VALID_VISIBILITY);
 
         // run
         EditTextBean result = sut.dehydrate(mockEditText);
@@ -45,12 +49,13 @@ public class EditTextPersisterTest {
         // verify
         assertEquals(A_VALID_TEXT_ENTRY, result.text);
         assertEquals(A_VALID_ENABLED_STATE, result.enabled);
+        assertEquals(A_VALID_VISIBILITY, result.visibility);
     }
 
     @Test
     public void hydrates() {
         // init
-        final PersistedDataBean persistedDataBean = new EditTextBean(A_VALID_TEXT_ENTRY, A_VALID_ENABLED_STATE);
+        final PersistedDataBean persistedDataBean = new EditTextBean(A_VALID_TEXT_ENTRY, A_VALID_ENABLED_STATE, A_VALID_VISIBILITY);
 
         // run
         sut.hydrate(mockEditText, persistedDataBean);
@@ -58,5 +63,6 @@ public class EditTextPersisterTest {
         // verify
         verify(mockEditText).setText(A_VALID_TEXT_ENTRY);
         verify(mockEditText).setEnabled(A_VALID_ENABLED_STATE);
+        verify(mockEditText).setVisibility(A_VALID_VISIBILITY);
     }
 }

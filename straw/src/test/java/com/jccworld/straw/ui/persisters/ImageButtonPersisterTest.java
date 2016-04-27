@@ -1,5 +1,6 @@
 package com.jccworld.straw.ui.persisters;
 
+import android.view.View;
 import android.widget.ImageButton;
 
 import com.jccworld.straw.R;
@@ -19,6 +20,8 @@ import static org.mockito.Mockito.when;
 public class ImageButtonPersisterTest {
     private static final int A_VALID_RESOURCE_ID = android.R.drawable.btn_minus;
     private static final boolean A_VALID_ENABLED_STATE = true;
+    private static final int A_VALID_VISIBILITY = View.VISIBLE;
+
     private ImageButtonPersister sut;
 
     @Mock
@@ -42,12 +45,14 @@ public class ImageButtonPersisterTest {
         // verify
         assertEquals(A_VALID_RESOURCE_ID, result.resourceId);
         assertEquals(A_VALID_ENABLED_STATE, result.enabled);
+        assertEquals(A_VALID_VISIBILITY, result.visibility);
     }
 
     @Test
     public void hydrates() {
         // init
-        final PersistedDataBean persistedDataBean = new ImageButtonBean(A_VALID_RESOURCE_ID, A_VALID_ENABLED_STATE);
+        final PersistedDataBean persistedDataBean = new ImageButtonBean(A_VALID_RESOURCE_ID,
+                A_VALID_ENABLED_STATE, A_VALID_VISIBILITY);
 
         // run
         sut.hydrate(mockImageButton, persistedDataBean);
@@ -55,5 +60,6 @@ public class ImageButtonPersisterTest {
         // verify
         verify(mockImageButton).setImageResource(A_VALID_RESOURCE_ID);
         verify(mockImageButton).setEnabled(A_VALID_ENABLED_STATE);
+        verify(mockImageButton).setVisibility(A_VALID_VISIBILITY);
     }
 }

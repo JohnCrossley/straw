@@ -21,15 +21,22 @@ import static org.mockito.Mockito.when;
  * Created by johncrossley on 22/04/16.
  */
 public class RadioGroupPersisterTest {
-    private static final String A_VALID_TEXT_ENTRY = "A VALID TEXT ENTRY";
     private static final boolean A_VALID_ENABLED_STATE = true;
-    public static final String TEXT_0 = "text 0";
-    public static final String TEXT_1 = "text 1";
-    public static final String TEXT_2 = "text 2";
-    public static final boolean ENABLED_0 = true;
-    public static final boolean ENABLED_1 = false;
-    public static final boolean ENABLED_2 = true;
+
+    private static final String TEXT_0 = "text 0";
+    private static final String TEXT_1 = "text 1";
+    private static final String TEXT_2 = "text 2";
+
+    private static final boolean ENABLED_0 = true;
+    private static final boolean ENABLED_1 = false;
+    private static final boolean ENABLED_2 = true;
+
+    private static final int VISIBILITY_0 = View.VISIBLE;
+    private static final int VISIBILITY_1 = View.INVISIBLE;
+    private static final int VISIBILITY_2 = View.GONE;
+
     private static final int A_VALID_ID = 123;
+
     private RadioGroupPersister sut;
 
     @Mock
@@ -82,11 +89,18 @@ public class RadioGroupPersisterTest {
         when(mockRadioButton1.isEnabled()).thenReturn(ENABLED_1);
         when(mockRadioButton2.isEnabled()).thenReturn(ENABLED_2);
 
-        radioBean0 = new RadioButtonBean(TEXT_0, ENABLED_0);
-        radioBean1 = new RadioButtonBean(TEXT_1, ENABLED_1);
-        radioBean2 = new RadioButtonBean(TEXT_2, ENABLED_2);
+        when(mockRadioButton0.getVisibility()).thenReturn(VISIBILITY_0);
+        when(mockRadioButton1.getVisibility()).thenReturn(VISIBILITY_1);
+        when(mockRadioButton2.getVisibility()).thenReturn(VISIBILITY_2);
 
-        radioAlternativeBean1 = new RadioButtonBean(ENABLED_1);
+        radioBean0 = new RadioButtonBean(TEXT_0, ENABLED_0, VISIBILITY_0);
+        radioBean1 = new RadioButtonBean(TEXT_1, ENABLED_1, VISIBILITY_1);
+        radioBean2 = new RadioButtonBean(TEXT_2, ENABLED_2, VISIBILITY_2);
+
+        radioAlternativeBean1 = new RadioButtonBean(ENABLED_1, VISIBILITY_1);
+
+        when(mockViewAlternative1.isEnabled()).thenReturn(ENABLED_1);
+        when(mockViewAlternative1.getVisibility()).thenReturn(VISIBILITY_1);
     }
 
     @Test
@@ -105,10 +119,13 @@ public class RadioGroupPersisterTest {
         assertEquals(3, result.radioButtonBeans.length);
         assertEquals(TEXT_0, result.radioButtonBeans[0].text);
         assertEquals(ENABLED_0, result.radioButtonBeans[0].enabled);
+        assertEquals(VISIBILITY_0, result.radioButtonBeans[0].visibility);
         assertEquals(TEXT_1, result.radioButtonBeans[1].text);
         assertEquals(ENABLED_1, result.radioButtonBeans[1].enabled);
+        assertEquals(VISIBILITY_1, result.radioButtonBeans[1].visibility);
         assertEquals(TEXT_2, result.radioButtonBeans[2].text);
         assertEquals(ENABLED_2, result.radioButtonBeans[2].enabled);
+        assertEquals(VISIBILITY_2, result.radioButtonBeans[2].visibility);
     }
 
     @Test //a mixed group of other non-RadioButton views
@@ -127,9 +144,12 @@ public class RadioGroupPersisterTest {
         assertEquals(3, result.radioButtonBeans.length);
         assertEquals(TEXT_0, result.radioButtonBeans[0].text);
         assertEquals(ENABLED_0, result.radioButtonBeans[0].enabled);
+        assertEquals(VISIBILITY_0, result.radioButtonBeans[0].visibility);
         assertEquals(ENABLED_1, result.radioButtonBeans[1].enabled);
+        assertEquals(VISIBILITY_1, result.radioButtonBeans[1].visibility);
         assertEquals(TEXT_2, result.radioButtonBeans[2].text);
         assertEquals(ENABLED_2, result.radioButtonBeans[2].enabled);
+        assertEquals(VISIBILITY_2, result.radioButtonBeans[2].visibility);
     }
 
     @Test
@@ -165,10 +185,13 @@ public class RadioGroupPersisterTest {
         // verify
         verify(mockRadioButton0).setText(TEXT_0);
         verify(mockRadioButton0).setEnabled(ENABLED_0);
+        verify(mockRadioButton0).setVisibility(VISIBILITY_0);
         verify(mockRadioButton1).setText(TEXT_1);
         verify(mockRadioButton1).setEnabled(ENABLED_1);
+        verify(mockRadioButton1).setVisibility(VISIBILITY_1);
         verify(mockRadioButton2).setText(TEXT_2);
         verify(mockRadioButton2).setEnabled(ENABLED_2);
+        verify(mockRadioButton2).setVisibility(VISIBILITY_2);
         verify(mockRadioButton1).setSelected(true);//IDX 1
     }
 

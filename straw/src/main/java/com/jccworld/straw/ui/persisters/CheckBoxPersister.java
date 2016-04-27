@@ -12,7 +12,8 @@ import com.jccworld.straw.ui.vo.Persister;
 public class CheckBoxPersister implements Persister<CheckBox> {
     @Override
     public CheckBoxBean dehydrate(final CheckBox checkBox) {
-        CheckBoxBean bean = new CheckBoxBean(checkBox.getText().toString(), checkBox.isEnabled());
+        CheckBoxBean bean = new CheckBoxBean(checkBox.getText().toString(), checkBox.isEnabled(),
+                checkBox.getVisibility());
         return bean;
     }
 
@@ -21,5 +22,6 @@ public class CheckBoxPersister implements Persister<CheckBox> {
         CheckBoxBean bean = (CheckBoxBean) payload;
         checkBox.setText(bean.text);
         checkBox.setEnabled(bean.enabled);
+        checkBox.setVisibility(bean.visibility);
     }
 }

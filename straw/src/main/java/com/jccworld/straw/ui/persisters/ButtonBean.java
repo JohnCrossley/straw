@@ -6,9 +6,11 @@ package com.jccworld.straw.ui.persisters;
 public class ButtonBean implements PersistedDataBean {
     final String text;
     final boolean enabled;
+    final int visibility;
 
-    ButtonBean(final String text, final boolean enabled) {
+    ButtonBean(final String text, final boolean enabled, final int visibility) {
         this.text = text;
         this.enabled = enabled;
+        this.visibility = visibility;
     }
 }

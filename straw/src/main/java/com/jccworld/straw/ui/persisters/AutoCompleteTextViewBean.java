@@ -6,9 +6,11 @@ package com.jccworld.straw.ui.persisters;
 public class AutoCompleteTextViewBean implements PersistedDataBean {
     final String text;
     final boolean enabled;
+    final int visibility;
 
-    AutoCompleteTextViewBean(final String text, final boolean enabled) {
+    AutoCompleteTextViewBean(final String text, final boolean enabled, final int visibility) {
         this.text = text;
         this.enabled = enabled;
+        this.visibility = visibility;
     }
 }
