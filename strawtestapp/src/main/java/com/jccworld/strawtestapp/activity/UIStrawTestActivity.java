@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -18,13 +19,14 @@ import android.widget.ToggleButton;
 
 import com.jccworld.straw.KeyValueCache;
 import com.jccworld.straw.UIPersister;
+import com.jccworld.straw.activity.BaseActivity;
 import com.jccworld.straw.ui.persisters.Persisted;
 import com.jccworld.strawtestapp.R;
 import com.jccworld.strawtestapp.debug.VerboseActivity;
 
 import java.util.Random;
 
-public class UITestActivity extends VerboseActivity implements View.OnClickListener {
+public class UIStrawTestActivity extends BaseActivity implements View.OnClickListener {
     private static final String INITIAL_TEXT = "sample text";
     private static final String RUNTIME_CHANGE_TEXT = "new changed text";
     private static final String TEXT_ON = "one";
@@ -59,6 +61,7 @@ public class UITestActivity extends VerboseActivity implements View.OnClickListe
 
     @Persisted private ToggleButton toggleButton;
     @Persisted private Switch switchButton;
+    @Persisted private ProgressBar progressBar;
 
     //experimentation buttons
     private Button modifyContentBtn;
@@ -79,6 +82,7 @@ public class UITestActivity extends VerboseActivity implements View.OnClickListe
         setupCheckBoxes();
         setupToggleButton();
         setupSwitch();
+        setupProgressBar();
 
         setupControls();
     }
@@ -149,6 +153,7 @@ public class UITestActivity extends VerboseActivity implements View.OnClickListe
         toggleButton.setChecked(new Random().nextBoolean());
         toggleButton.setText(RUNTIME_CHANGE_TEXT + " " + currentTimeMillis);
         switchButton.setChecked(new Random().nextBoolean());
+        progressBar.setProgress((int)(Math.random() * 100));
     }
 
     private void changeEnabledViewStates() {
@@ -169,6 +174,7 @@ public class UITestActivity extends VerboseActivity implements View.OnClickListe
         checkBox3.setEnabled(viewsEnabled);
         toggleButton.setEnabled(viewsEnabled);
         switchButton.setEnabled(viewsEnabled);
+        progressBar.setEnabled(viewsEnabled);
 
         updateEnableDisableLabel();
     }
@@ -248,6 +254,11 @@ public class UITestActivity extends VerboseActivity implements View.OnClickListe
             switchButton.setShowText(true);//wtf!! hacky android
         }
         switchButton.setChecked(true);
+    }
+
+    private void setupProgressBar() {
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setProgress(50);
     }
 
     private void setupControls() {

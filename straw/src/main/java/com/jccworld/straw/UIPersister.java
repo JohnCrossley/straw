@@ -1,6 +1,7 @@
 package com.jccworld.straw;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -68,8 +69,16 @@ public class UIPersister {
         matchers.put(ProgressBar.class, new ProgressBarPersister());
     }
 
-    public void save(final Activity activity) throws IllegalArgumentException {
-        final Field[] fields = activity.getClass().getDeclaredFields();
+    public void save(final Activity activity) {
+        save((Object)activity);
+    }
+
+    public void save(final Fragment fragment) {
+        save((Object)fragment);
+    }
+
+    private void save(final Object object) {
+        final Field[] fields = object.getClass().getDeclaredFields();
 
         for(final Field field : fields) {
             final Persisted annotation = field.getAnnotation(Persisted.class);
@@ -84,7 +93,7 @@ public class UIPersister {
 
                 try {
                     field.setAccessible(true);
-                    final Object viewToSerialise = field.get(activity);
+                    final Object viewToSerialise = field.get(object);
 
                     final Method method = persister.getClass().getMethod(DEHYDRATE_METHOD, type);
                     final Object serialisedObject = method.invoke(persister, viewToSerialise);
@@ -98,8 +107,16 @@ public class UIPersister {
         }
     }
 
-    public void load(final Activity activity) throws IllegalArgumentException {
-        final Field[] fields = activity.getClass().getDeclaredFields();
+    public void load(final Activity activity) {
+        load((Object)activity);
+    }
+
+    public void load(final Fragment fragment) {
+        load((Object)fragment);
+    }
+
+    private void load(final Object object) {
+        final Field[] fields = object.getClass().getDeclaredFields();
 
         for(final Field field : fields) {
             final Persisted annotation = field.getAnnotation(Persisted.class);
@@ -114,7 +131,7 @@ public class UIPersister {
 
                 try {
                     field.setAccessible(true);
-                    final Object viewToPopulate = field.get(activity);
+                    final Object viewToPopulate = field.get(object);
 
                     final Method method = persister.getClass().getMethod(HYDRATE_METHOD, type, PersistedDataBean.class);
                     method.invoke(persister, viewToPopulate, map.get(field.getName()));

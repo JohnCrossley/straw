@@ -1,13 +1,13 @@
 package com.jccworld.straw.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.jccworld.straw.BuildConfig;
 import com.jccworld.straw.KeyValueCache;
+import com.jccworld.straw.UIComponentProxy;
 import com.jccworld.straw.UIPersister;
 import com.jccworld.straw.fakes.ActivityExtendingBaseActivity;
-import com.jccworld.straw.fakes.ValidApplicationContext;
+import com.jccworld.straw.fakes.ValidApplication;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +19,7 @@ import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.util.ActivityController;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
@@ -28,9 +28,8 @@ import static org.mockito.Mockito.verify;
  * Created by johncrossley on 21/04/16.
  */
 @RunWith(RobolectricGradleTestRunner.class)
-@Config(constants = BuildConfig.class, application = ValidApplicationContext.class)
+@Config(constants = BuildConfig.class, application = ValidApplication.class)
 public class BaseActivityTest {
-    private static final String A_VALID_ACTIVITY_ID = "A VALID ACTIVITY ID";
     private ActivityController<ActivityExtendingBaseActivity> activityController;
     private ActivityExtendingBaseActivity sut;
     private ActivityCallbacks spySutDelegate;
@@ -71,12 +70,14 @@ public class BaseActivityTest {
         // init
         final KeyValueCache expectedKeyValueCache = new KeyValueCache();
         final InOrder inOrder = Mockito.inOrder(spySutDelegate);
+        final Bundle savedInstanceStateBundle = new Bundle();
         activityController.create();
         activityController.resume();
+        activityController.saveInstanceState(savedInstanceStateBundle);
         Mockito.reset(spySutDelegate);
 
         // run (2)
-        activityController.create();
+        activityController.create(savedInstanceStateBundle);//recreate
         activityController.resume();
 
         // verify
@@ -87,15 +88,15 @@ public class BaseActivityTest {
     @Test
     public void onCreatedSetsActivityId() {
         // init
-        activityController.withIntent(new Intent(sut, ActivityExtendingBaseActivity.class)
-                .putExtra(com.jccworld.straw.activity.ActivityController.ACTIVITY_ID, A_VALID_ACTIVITY_ID));
-
-        // run
+        final Bundle savedInstanceStateBundle = new Bundle();
         activityController.create();
         activityController.resume();
 
+        // run
+        activityController.saveInstanceState(savedInstanceStateBundle);//writes component id from instance to bundle
+
         // verify
-        assertEquals(A_VALID_ACTIVITY_ID, sut.getActivityIdTestImpl());
+        assertNotNull(savedInstanceStateBundle.getString(UIComponentProxy.COMPONENT_ID_KEY));
     }
 
     @Test

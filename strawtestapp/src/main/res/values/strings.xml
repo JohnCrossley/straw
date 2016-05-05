@@ -6,4 +6,8 @@
     <string name="forgotBtn">Forgot</string>
     <string name="loading">Loading, please wait...</string>
     <string name="dashboard">Dashboard</string>
+    <string name="subject">Subject</string>
+    <string name="body">body</string>
+    <string name="send">send</string>
+    <string name="bodySample">The quick brown fox jumps over the lazy dog.</string>
 </resources>

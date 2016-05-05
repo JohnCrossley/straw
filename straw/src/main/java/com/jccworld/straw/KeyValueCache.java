@@ -54,7 +54,7 @@ public class KeyValueCache {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
@@ -63,7 +63,7 @@ public class KeyValueCache {
             return false;
         }
 
-        KeyValueCache that = (KeyValueCache) o;
+        final KeyValueCache that = (KeyValueCache) o;
 
         return map.equals(that.map);
     }

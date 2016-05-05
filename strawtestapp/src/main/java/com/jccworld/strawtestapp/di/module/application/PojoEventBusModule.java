@@ -4,7 +4,7 @@ import com.jccworld.straw.eventbus.EventBus;
 import com.jccworld.straw.eventbus.EventBusFactory;
 import com.jccworld.straw.eventbus.container.PojoEventBusContainer;
 import com.jccworld.straw.eventbus.producer.EventBusProducer;
-import com.jccworld.strawtestapp.Application;
+import com.jccworld.strawtestapp.application.Application;
 import com.jccworld.strawtestapp.di.module.DIModule;
 import com.jccworld.strawtestapp.eventbus.converter.ToShort;
 import com.jccworld.strawtestapp.eventbus.converter.ToWord;

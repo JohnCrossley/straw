@@ -148,7 +148,6 @@ public class DomainEventBusActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void onLoad(boolean firstRun, KeyValueCache keyValueCache, UIPersister uiPersister) {
-//        System.out.println("[JCC] DomainEventBusActivity.onLoad - UI Thread " + Thread.currentThread());
         if (!firstRun) {
             uiPersister.load(this);
         }

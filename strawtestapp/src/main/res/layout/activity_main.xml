@@ -6,32 +6,40 @@
     android:gravity="center">
 
     <Button
-        android:id="@+id/uiTests"
+        android:id="@+id/uiActivityStrawTests"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="UI tests"
-    />
+        android:text="UI tests Straw (Activity)" />
+
+    <Button
+        android:id="@+id/uiActivityNoStrawTests"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UI tests No Straw (Activity)" />
+
+    <Button
+        android:id="@+id/uiFragmentTests"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UI tests (Fragment)" />
 
     <Button
         android:id="@+id/eventBusPojo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Event bus Pojo"
-    />
+        android:text="Event bus Pojo" />
 
     <Button
         android:id="@+id/eventBusDomain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Event bus Domain"
-    />
+        android:text="Event bus Domain" />
 
     <Button
         android:id="@+id/loginStraw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Example login screen with Straw"
-        />
+        android:text="Example login screen with Straw" />
 
     <Button
         android:id="@+id/loginNoStraw"

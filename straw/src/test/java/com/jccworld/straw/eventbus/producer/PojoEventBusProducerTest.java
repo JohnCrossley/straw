@@ -2,7 +2,6 @@ package com.jccworld.straw.eventbus.producer;
 
 import android.content.Context;
 import android.content.Intent;
-import android.hardware.camera2.CameraCaptureSession;
 
 import com.jccworld.straw.BuildConfig;
 import com.jccworld.straw.eventbus.DomainToIntentConverter;
@@ -19,7 +18,7 @@ import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;

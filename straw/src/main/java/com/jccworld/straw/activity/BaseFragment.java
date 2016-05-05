@@ -1,18 +1,21 @@
 package com.jccworld.straw.activity;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.jccworld.straw.UIComponentProxy;
 
 /**
- * Created by johncrossley on 26/10/15.
+ * Created by johncrossley on 28/04/16.
  */
-public abstract class BaseActivity extends Activity implements ActivityCallbacks {
+public abstract class BaseFragment extends Fragment implements FragmentCallbacks, ActivityCallbacks {
     private UIComponentProxy uiComponentProxy;
 
-    public BaseActivity() {
+    public BaseFragment() {
         super();
         logV("Constructor()");
     }
@@ -24,16 +27,22 @@ public abstract class BaseActivity extends Activity implements ActivityCallbacks
     //----------------------------------------------------------------------------------------------
 
     @Override
-    protected void onCreate(final Bundle savedInstanceState) {
-        logV("onCreate(savedInstanceState: " + savedInstanceState + ")");
-        super.onCreate(savedInstanceState);
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
+        logV("onCreateView(inflater: " + inflater + ", container: " + container + ", savedInstanceState: " + savedInstanceState + ")");
+        return inflateView(inflater, container);
+    }
+
+    @Override
+    public void onActivityCreated(final Bundle savedInstanceState) {
+        logV("onActivityCreated(savedInstanceState: " + savedInstanceState + ")");
+        super.onActivityCreated(savedInstanceState);
 
         uiComponentProxy = new UIComponentProxy(this);
         uiComponentProxy.handleOnCreated(savedInstanceState);
     }
 
     @Override
-    protected void onSaveInstanceState(final Bundle outState) {
+    public void onSaveInstanceState(final Bundle outState) {
         logV("onSaveInstanceState(outState: " + outState + ")");
         uiComponentProxy.onSaveInstanceState(outState);
 
@@ -41,7 +50,7 @@ public abstract class BaseActivity extends Activity implements ActivityCallbacks
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         logV("onResume()");
         super.onResume();
 
@@ -49,7 +58,7 @@ public abstract class BaseActivity extends Activity implements ActivityCallbacks
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         logV("onPause()");
         super.onPause();
 

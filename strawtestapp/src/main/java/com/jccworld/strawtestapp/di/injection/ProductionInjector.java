@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 
-import com.jccworld.strawtestapp.Application;
+import com.jccworld.strawtestapp.application.Application;
 import com.jccworld.strawtestapp.di.module.activity.ActivityModule;
 import com.jccworld.strawtestapp.di.module.service.ServiceModule;
 

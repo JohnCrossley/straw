@@ -1,6 +1,6 @@
 package com.jccworld.strawtestapp.di.module.application;
 
-import com.jccworld.strawtestapp.Application;
+import com.jccworld.strawtestapp.application.Application;
 import com.jccworld.strawtestapp.di.module.DIModule;
 
 import dagger.Module;

@@ -1,6 +1,6 @@
-package com.jccworld.strawtestapp;
+package com.jccworld.strawtestapp.application;
 
-import com.jccworld.straw.activity.ActivityCache;
+import com.jccworld.straw.activity.UIComponentCache;
 import com.jccworld.straw.application.ApplicationCallbacks;
 import com.jccworld.strawtestapp.debug.VerboseApplication;
 import com.jccworld.strawtestapp.di.module.application.ApplicationModule;
@@ -15,7 +15,7 @@ import dagger.ObjectGraph;
  */
 public class Application extends VerboseApplication implements ApplicationCallbacks {
     private ObjectGraph objectGraph;
-    private ActivityCache activityCache;
+    private UIComponentCache UIComponentCache;
 
     @Override
     public void onCreate() {
@@ -28,7 +28,7 @@ public class Application extends VerboseApplication implements ApplicationCallba
 
         objectGraph.inject(this);
 
-        activityCache = new ActivityCache();
+        UIComponentCache = new UIComponentCache();
     }
 
     public ObjectGraph getObjectGraph() {
@@ -36,7 +36,7 @@ public class Application extends VerboseApplication implements ApplicationCallba
     }
 
     @Override
-    public ActivityCache getActivityCache() {
-        return activityCache;
+    public UIComponentCache getUIComponentCache() {
+        return UIComponentCache;
     }
 }

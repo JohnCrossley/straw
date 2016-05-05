@@ -6,11 +6,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jccworld.straw.KeyValueCache;
 import com.jccworld.straw.UIPersister;
-import com.jccworld.straw.activity.ActivityController;
 import com.jccworld.straw.activity.BaseActivity;
 import com.jccworld.straw.eventbus.EventBus;
 import com.jccworld.straw.eventbus.EventBusListener;
@@ -113,7 +111,7 @@ public class LoginStrawActivity extends BaseActivity implements View.OnClickList
 
         if (loginState == LoginState.LOGGED_IN) {
             finish();
-            ActivityController.startActivity(this, DashboardActivity.class);
+            startActivity(new Intent(this, DashboardActivity.class));
         }
     }
 }

@@ -4,7 +4,7 @@ import com.jccworld.straw.eventbus.container.DomainEventBusContainer;
 import com.jccworld.straw.eventbus.EventBus;
 import com.jccworld.straw.eventbus.EventBusFactory;
 import com.jccworld.straw.eventbus.producer.EventBusProducer;
-import com.jccworld.strawtestapp.Application;
+import com.jccworld.strawtestapp.application.Application;
 import com.jccworld.strawtestapp.di.module.DIModule;
 
 import javax.inject.Named;
